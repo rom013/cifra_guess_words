@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-violet-400;
+  @apply bg-emerald-600;
 }
