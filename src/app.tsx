@@ -55,6 +55,9 @@ export function App() {
 
   function changeLine() {
     if (fields.indexOf(true) === 4) {
+      setAttempt([])
+      fields[fields.indexOf(true)] = false
+      setField(fields)
       return console.log("Fim de jogo");
     }
 
@@ -67,14 +70,8 @@ export function App() {
 
 
   useEffect(() => {
-    // console.log(attempt);
-
     attempt.length == 5 ? setIsActive(true) : setIsActive(false)
   }, [attempt])
-
-  useEffect(() => {
-    console.log(result);
-  }, [result])
 
   return (
     <main className='min-h-screen max-w-4xl w-full mx-auto py-10'>
@@ -84,6 +81,8 @@ export function App() {
         <section className="w-full flex flex-col items-center justify-center gap-4">
           {
             fields.map((field, key) => {
+              console.log("okkkk");
+
               return (
                 <RowField
                   key={key}
