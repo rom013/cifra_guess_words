@@ -2,32 +2,54 @@ import { useEffect, useState } from "react";
 import { RowField } from "./components/rowField";
 
 const hiddenWord = ["l", "a", "g", "o", "a"]
+let count = 0
 
 export function App() {
   const [attempt, setAttempt] = useState<string[]>([])
+  const [result, setResult] = useState<Array<Array<string>>>([[], [], [], [], []])
   const [isActive, setIsActive] = useState<boolean>(false)
   const [fields, setField] = useState<boolean[]>([true, false, false, false, false])
 
-  function handleEvaluateWord() {
-    hiddenWord.forEach((w, i) => {
-      attempt.some((wa, ia) => {
+
+  async function handleEvaluateWord() {
+    // setResult([result])
+
+    const resultList: Array<string> = []
+
+    attempt.forEach((w, i) => {
+      hiddenWord.some((wa, ia) => {
         if (w === wa) {
           if (i == ia) {
+            // setResult((prevState) => [...prevState, ])
+            resultList.push("right")
             console.log(w, wa, i, ia, "posição certa")
             return true
           }
           else {
+            // setResult((prevState) => [...prevState, "almost"])
+            resultList.push("almost")
             console.log(w, wa, i, ia, "posição errada")
             return true
           }
         }
         else {
-          console.log(w, wa, i, ia, "Invalido")
+          if (ia == 4) {
+            // setResult((prevState) => [...prevState, "invalid"])
+            resultList.push("invalid")
+            console.log(w, wa, i, ia, "Invalido")
+          }
           return false
         }
       })
     })
 
+    await setResult(prevState => {
+      const novoResultado = [...prevState];
+      novoResultado[count] = resultList
+      return novoResultado
+    })
+
+    count++
     changeLine()
   }
 
@@ -35,8 +57,6 @@ export function App() {
     if (fields.indexOf(true) === 4) {
       return console.log("Fim de jogo");
     }
-
-    console.log(attempt);
 
     fields[fields.indexOf(true) + 1] = true
     fields[fields.indexOf(true)] = false
@@ -47,10 +67,14 @@ export function App() {
 
 
   useEffect(() => {
-    console.log(attempt);
+    // console.log(attempt);
 
     attempt.length == 5 ? setIsActive(true) : setIsActive(false)
   }, [attempt])
+
+  useEffect(() => {
+    console.log(result);
+  }, [result])
 
   return (
     <main className='min-h-screen max-w-4xl w-full mx-auto py-10'>
@@ -66,6 +90,7 @@ export function App() {
                   attemptList={attempt}
                   setAttempt={setAttempt}
                   status={field}
+                  result={result[key]}
                 />
               )
             })

@@ -1,15 +1,17 @@
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, memo, useEffect, useState } from "react"
+import { twMerge } from "tailwind-merge"
 
 type FieldProps = {
     data: {
         status: boolean
         attemptList: string[]
         setAttempt: any
+        result: string[]
     }
     idField: number
 }
 
-export function FieldText({ data, idField }: FieldProps) {
+function FieldText({ data, idField }: FieldProps) {
     const [word, setWord] = useState("")
     const [isDeleted, setIsDeleted] = useState(false)
 
@@ -22,6 +24,9 @@ export function FieldText({ data, idField }: FieldProps) {
         data.setAttempt(data.attemptList)
     }
 
+    useEffect(() => {
+        console.log(data.result, data.status)
+    }, [data])
 
     return data.status ? (<input
         type="text"
@@ -45,9 +50,12 @@ export function FieldText({ data, idField }: FieldProps) {
     />)
         : (
             <div
-                className="size-16 rounded-3xl text-4xl flex items-center justify-center font-extrabold font-sora bg-white"
+                className={twMerge("box", data.result[idField])}
             >
                 <span>{word}</span>
             </div>
         )
 }
+
+const memoFieldText = memo(FieldText)
+export { memoFieldText as FieldText }

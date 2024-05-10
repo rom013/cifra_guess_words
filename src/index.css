@@ -5,3 +5,19 @@
 body {
   @apply bg-emerald-600;
 }
+
+.box {
+  @apply size-16 rounded-3xl text-4xl flex items-center justify-center font-extrabold font-sora bg-white;
+}
+
+.right {
+  @apply bg-sky-400;
+}
+
+.invalid {
+  @apply bg-red-400;
+}
+
+.almost {
+  @apply bg-orange-400;
+}

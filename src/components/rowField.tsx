@@ -1,18 +1,25 @@
+import { memo, useEffect } from "react";
 import { FieldText } from "./fieldText";
 
 type RowFieldProps = {
     attemptList: string[]
     setAttempt: any
     status: boolean
+    result: Array<string>
 }
 
-export function RowField({ attemptList, setAttempt, status }: RowFieldProps) {
+function RowField({ attemptList, setAttempt, status, result }: RowFieldProps) {
 
     const data = {
-        status,
         attemptList,
-        setAttempt
+        setAttempt,
+        status,
+        result
     }
+
+    useEffect(() => {
+        console.log(result);
+    }, [result])
 
     return (
         <div className="flex gap-5">
@@ -24,3 +31,6 @@ export function RowField({ attemptList, setAttempt, status }: RowFieldProps) {
         </div>
     )
 }
+
+const memoRowField = memo(RowField)
+export { memoRowField as RowField }
