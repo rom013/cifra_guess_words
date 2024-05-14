@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useEffect, useState } from "react"
+import { ChangeEvent, memo, useState } from "react"
 import { twMerge } from "tailwind-merge"
 
 type FieldProps = {
@@ -23,10 +23,6 @@ function FieldText({ data, idField }: FieldProps) {
         setIsDeleted(false)
         data.setAttempt(data.attemptList)
     }
-
-    useEffect(() => {
-        console.log(data.result, data.status)
-    }, [data])
 
     return data.status ? (<input
         type="text"

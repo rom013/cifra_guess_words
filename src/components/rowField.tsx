@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { memo } from "react";
 import { FieldText } from "./fieldText";
 
 type RowFieldProps = {
@@ -16,10 +16,6 @@ function RowField({ attemptList, setAttempt, status, result }: RowFieldProps) {
         status,
         result
     }
-
-    useEffect(() => {
-        console.log(result);
-    }, [result])
 
     return (
         <div className="flex gap-5">

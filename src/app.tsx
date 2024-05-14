@@ -12,35 +12,27 @@ export function App() {
 
 
   async function handleEvaluateWord() {
-    // setResult([result])
-
     const resultList: Array<string> = []
 
     attempt.forEach((w, i) => {
-      hiddenWord.some((wa, ia) => {
-        if (w === wa) {
-          if (i == ia) {
-            // setResult((prevState) => [...prevState, ])
-            resultList.push("right")
-            console.log(w, wa, i, ia, "posição certa")
-            return true
-          }
-          else {
-            // setResult((prevState) => [...prevState, "almost"])
-            resultList.push("almost")
-            console.log(w, wa, i, ia, "posição errada")
-            return true
-          }
-        }
-        else {
-          if (ia == 4) {
-            // setResult((prevState) => [...prevState, "invalid"])
-            resultList.push("invalid")
-            console.log(w, wa, i, ia, "Invalido")
-          }
-          return false
-        }
+
+      const positionIndex = hiddenWord.findIndex((element, index) => {
+        return element === w && index === i
       })
+
+      if (positionIndex != -1) {
+        resultList.push("right")
+      }
+      else {
+        const positionLatterIndex = hiddenWord.findIndex((element, index) => {
+          return element === w && index != i
+        })
+
+        if (positionLatterIndex != -1) {
+          resultList.push("almost")
+        }
+        else resultList.push("invalid")
+      }
     })
 
     await setResult(prevState => {
@@ -61,11 +53,12 @@ export function App() {
       return console.log("Fim de jogo");
     }
 
-    fields[fields.indexOf(true) + 1] = true
-    fields[fields.indexOf(true)] = false
+    const updatedFields = [...fields];
+    updatedFields[fields.indexOf(true) + 1] = true;
+    updatedFields[fields.indexOf(true)] = false;
 
+    setField(updatedFields);
     setAttempt([])
-    setField(fields)
   }
 
 
