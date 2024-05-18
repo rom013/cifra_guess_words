@@ -1,9 +1,14 @@
 import { memo } from "react";
 import { FieldText } from "./fieldText";
 
+interface Attempt {
+    position: number,
+    latter: string
+}
+
 type RowFieldProps = {
-    attemptList: string[]
-    setAttempt: any
+    attemptList: Attempt[]
+    setAttempt: (attemptList: Attempt[]) => void;
     status: boolean
     result: Array<string>
 }

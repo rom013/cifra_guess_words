@@ -1,11 +1,16 @@
 import { ChangeEvent, memo, useState } from "react"
 import { twMerge } from "tailwind-merge"
 
+interface Attempt {
+    latter: string;
+    position: number;
+}
+
 type FieldProps = {
     data: {
         status: boolean
-        attemptList: string[]
-        setAttempt: any
+        attemptList: Attempt[]
+        setAttempt: (attemptList: Attempt[]) => void
         result: string[]
     }
     idField: number
@@ -18,7 +23,7 @@ function FieldText({ data, idField }: FieldProps) {
     function handleDeletedWork(e: ChangeEvent<HTMLInputElement>) {
         setWord(e.target.value)
 
-        data.attemptList[idField] = e.target.value
+        data.attemptList[idField] = { latter: e.target.value, position: idField }
 
         setIsDeleted(false)
         data.setAttempt(data.attemptList)
@@ -39,7 +44,8 @@ function FieldText({ data, idField }: FieldProps) {
 
             if (word.length < 1) {
                 setWord(e.target.value)
-                data.setAttempt([...data.attemptList, e.target.value])
+                const obj = { latter: e.target.value, position: idField }
+                data.setAttempt([...data.attemptList, obj])
             }
         }}
         value={word}

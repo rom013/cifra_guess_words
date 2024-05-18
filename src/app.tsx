@@ -5,19 +5,22 @@ const hiddenWord = ["l", "a", "g", "o", "a"]
 let count = 0
 
 export function App() {
-  const [attempt, setAttempt] = useState<string[]>([])
+  const [attempt, setAttempt] = useState<{ latter: string, position: number }[]>([])
   const [result, setResult] = useState<Array<Array<string>>>([[], [], [], [], []])
-  const [isActive, setIsActive] = useState<boolean>(false)
+  const [isActive, setIsActive] = useState<boolean>(true)
   const [fields, setField] = useState<boolean[]>([true, false, false, false, false])
 
 
   async function handleEvaluateWord() {
     const resultList: Array<string> = []
 
-    attempt.forEach((w, i) => {
+    attempt.sort((a, b) => {
+      return a.position - b.position
+    }).forEach((w, i) => {
+      console.log(3333);
 
       const positionIndex = hiddenWord.findIndex((element, index) => {
-        return element === w && index === i
+        return element === w.latter && index === i
       })
 
       if (positionIndex != -1) {
@@ -25,7 +28,7 @@ export function App() {
       }
       else {
         const positionLatterIndex = hiddenWord.findIndex((element, index) => {
-          return element === w && index != i
+          return element === w.latter && index != i
         })
 
         if (positionLatterIndex != -1) {
@@ -74,7 +77,7 @@ export function App() {
         <section className="w-full flex flex-col items-center justify-center gap-4">
           {
             fields.map((field, key) => {
-              console.log("okkkk");
+              // console.log("okkkk");
 
               return (
                 <RowField
