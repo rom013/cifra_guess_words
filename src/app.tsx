@@ -10,10 +10,7 @@ const wordOptions = [
   ["t", "e", "r", "r", "a"],
   ["n", "u", "v", "e", "m"],
   ["c", "a", "m", "p", "o"],
-  ["m", "a", "r", "e", "s"],
-  ["l", "u", "z", "e", "s"],
   ["c", "e", "r", "c", "a"],
-  ["r", "u", "a", "s", "s"],
   ["b", "r", "a", "s", "a"],
   ["p", "e", "n", "a", "s"],
   ["f", "o", "r", "m", "a"],
@@ -24,15 +21,13 @@ const wordOptions = [
   ["v", "i", "d", "r", "o"],
   ["r", "a", "d", "i", "o"],
   ["c", "a", "n", "t", "o"],
-  ["m", "e", "s", "a", "s"],
-  ["p", "a", "r", "e", "d"],
   ["p", "r", "e", "t", "o"],
   ["b", "i", "c", "h", "o"],
   ["c", "a", "r", "n", "e"],
   ["l", "i", "v", "r", "o"],
   ["c", "h", "u", "v", "a"],
   ["b", "a", "i", "x", "o"],
-  ["m", "a", "n", "h", "ã"],
+  ["m", "a", "n", "h", "a"],
   ["c", "a", "i", "x", "a"],
   ["f", "a", "m", "í", "l"],
   ["t", "e", "s", "t", "e"],
@@ -51,12 +46,13 @@ export function App() {
   const [result, setResult] = useState<Array<Array<string>>>([[], [], [], [], []])
   const [isActive, setIsActive] = useState<boolean>(true)
   const [fields, setField] = useState<boolean[]>([true, false, false, false, false])
-
+  const [isFinish, setIsFinish] = useState<boolean>(false)
   const [hiddenWord, setHiddenWord] = useState<string[]>([])
 
   useEffect(() => {
     const numberRundom = Math.round(Math.random() * wordOptions.length)
     const wordRandom = wordOptions[numberRundom]
+    console.log(wordRandom);
 
     setHiddenWord(wordRandom)
   }, [])
@@ -66,8 +62,6 @@ export function App() {
   }, [attempt])
 
   async function handleEvaluateWord() {
-
-
     const resultList: Array<string> = []
 
     attempt.sort((a, b) => {
@@ -98,6 +92,11 @@ export function App() {
       return novoResultado
     })
 
+    if (resultList.every((currentResult) => currentResult == "right")) {
+      setIsFinish(true)
+      return
+    }
+
     count++
     changeLine()
   }
@@ -107,6 +106,7 @@ export function App() {
       setAttempt([])
       fields[fields.indexOf(true)] = false
       setField(fields)
+      setIsFinish(true)
       return console.log("Fim de jogo");
     }
 
@@ -149,7 +149,10 @@ export function App() {
           ENTER
         </button>
 
-        <ModalWin />
+        {
+          isFinish && <ModalWin hiddenWord={hiddenWord} countAttempt={count + 1} />
+        }
+
       </div>
     </main>
   )
