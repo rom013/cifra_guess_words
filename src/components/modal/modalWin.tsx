@@ -6,7 +6,7 @@ interface ModalWinProps {
 export default function ModalWin({ hiddenWord, countAttempt }: ModalWinProps) {
     return (
         <section className="absolute inset-0 bg-black/80 flex justify-center items-center">
-            <div className="w-full max-w-xl bg-zinc-700 rounded-lg p-6 space-y-6">
+            <div className="w-full max-w-xl bg-zinc-700 rounded-lg p-6 space-y-6 animate-[1s_slide-in-bck-top_cubic-bezier(0.250,0.460,0.450,0.940)_both]">
                 <h1
                     className="text-white text-center text-3xl font-sora font-bold"
                 >

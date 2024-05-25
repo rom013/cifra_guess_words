@@ -151,7 +151,7 @@ export function App() {
         {
           isFinish && <ModalWin hiddenWord={hiddenWord} countAttempt={count + 1} />
         }
-
+        {/* <ModalWin hiddenWord={hiddenWord} countAttempt={count + 1} /> */}
       </div>
     </main>
   )
