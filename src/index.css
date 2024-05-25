@@ -11,13 +11,17 @@ body {
 }
 
 .right {
-  @apply bg-teal-300;
+  @apply !bg-teal-300;
 }
 
 .invalid {
-  @apply bg-red-400;
+  @apply !bg-red-400;
 }
 
 .almost {
-  @apply bg-yellow-200;
+  @apply !bg-yellow-200;
+}
+
+.square-field {
+  @apply size-16 rounded-3xl text-4xl text-center font-extrabold font-sora bg-white border-4 border-zinc-300 focus:outline-none focus-visible:border-4 focus-visible:border-teal-400;
 }

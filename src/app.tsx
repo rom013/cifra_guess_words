@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { RowField } from "./components/rowField";
+import ModalWin from "./components/modal/modalWin";
 
 const wordOptions = [
   ["l", "a", "g", "o", "a"],
@@ -147,6 +148,8 @@ export function App() {
         >
           ENTER
         </button>
+
+        <ModalWin />
       </div>
     </main>
   )

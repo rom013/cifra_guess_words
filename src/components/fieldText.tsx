@@ -31,7 +31,7 @@ function FieldText({ data, idField }: FieldProps) {
 
     return data.status ? (<input
         type="text"
-        className="size-16 rounded-3xl text-4xl text-center font-extrabold font-sora bg-white border-4 border-zinc-300 focus:outline-none focus-visible:border-4 focus-visible:border-teal-400"
+        className="square-field"
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
             if (e.target.value.trim() === '') {
                 setWord(e.target.value)
