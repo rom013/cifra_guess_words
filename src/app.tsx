@@ -1,7 +1,29 @@
 import { useEffect, useState } from "react";
 import { RowField } from "./components/rowField";
 
-const hiddenWord = ["l", "a", "g", "o", "a"]
+const wordOptions = [
+  ["l", "a", "g", "o", "a"],
+  ["p", "e", "i", "x", "e"],
+  ["a", "m", "i", "g", "o"],
+  ["s", "o", "r", "r", "i"],
+  ["t", "e", "r", "r", "a"],
+  ["n", "u", "v", "e", "m"],
+  ["c", "a", "m", "p", "o"],
+  ["m", "a", "r", "e", "s"],
+  ["l", "u", "z", "e", "s"],
+  ["c", "e", "r", "c", "a"],
+  ["r", "u", "a", "s", "s"],
+  ["b", "r", "a", "s", "a"],
+  ["p", "e", "n", "a", "s"],
+  ["f", "o", "r", "m", "a"],
+  ["v", "a", "l", "e", "s"],
+  ["f", "r", "u", "t", "o"],
+  ["c", "o", "r", "p", "o"],
+  ["s", "o", "p", "r", "o"],
+  ["v", "i", "d", "r", "o"],
+  ["r", "a", "d", "i", "o"]
+]
+
 let count = 0
 
 export function App() {
@@ -10,15 +32,27 @@ export function App() {
   const [isActive, setIsActive] = useState<boolean>(true)
   const [fields, setField] = useState<boolean[]>([true, false, false, false, false])
 
+  const [hiddenWord, setHiddenWord] = useState<string[]>([])
+
+  useEffect(() => {
+    const numberRundom = Math.round(Math.random() * wordOptions.length)
+    const wordRandom = wordOptions[numberRundom]
+
+    setHiddenWord(wordRandom)
+  }, [])
+
+  useEffect(() => {
+    attempt.length == 5 ? setIsActive(true) : setIsActive(false)
+  }, [attempt])
 
   async function handleEvaluateWord() {
+
+
     const resultList: Array<string> = []
 
     attempt.sort((a, b) => {
       return a.position - b.position
     }).forEach((w, i) => {
-      console.log(3333);
-
       const positionIndex = hiddenWord.findIndex((element, index) => {
         return element === w.latter && index === i
       })
@@ -64,15 +98,10 @@ export function App() {
     setAttempt([])
   }
 
-
-  useEffect(() => {
-    attempt.length == 5 ? setIsActive(true) : setIsActive(false)
-  }, [attempt])
-
   return (
     <main className='min-h-screen max-w-4xl w-full mx-auto py-10'>
       <div className="flex flex-col gap-20 items-center">
-        <h1 className="text-white text-4xl font-bold font-sora">MapQuest</h1>
+        <h1 className="text-white text-4xl font-bold font-sora">CIFRA</h1>
 
         <section className="w-full flex flex-col items-center justify-center gap-4">
           {
