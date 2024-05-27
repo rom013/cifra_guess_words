@@ -1,20 +1,7 @@
 import { ChangeEvent, memo, useState } from "react"
 import { twMerge } from "tailwind-merge"
+import { FieldProps } from "../interfaces/FieldProps.interface"
 
-interface Attempt {
-    latter: string;
-    position: number;
-}
-
-type FieldProps = {
-    data: {
-        status: boolean
-        attemptList: Attempt[]
-        setAttempt: (attemptList: Attempt[]) => void
-        result: string[]
-    }
-    idField: number
-}
 
 function FieldText({ data, idField }: FieldProps) {
     const [word, setWord] = useState("")
