@@ -21,9 +21,9 @@ function FieldText({ data, idField }: FieldProps) {
     const [isDeleted, setIsDeleted] = useState(false)
 
     function handleDeletedWork(e: ChangeEvent<HTMLInputElement>) {
-        setWord(e.target.value)
+        setWord(e.target.value.toLowerCase())
 
-        data.attemptList[idField] = { latter: e.target.value, position: idField }
+        data.attemptList[idField] = { latter: e.target.value.toLowerCase(), position: idField }
 
         setIsDeleted(false)
         data.setAttempt(data.attemptList)
@@ -34,7 +34,7 @@ function FieldText({ data, idField }: FieldProps) {
         className="square-field"
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
             if (e.target.value.trim() === '') {
-                setWord(e.target.value)
+                setWord(e.target.value.toLowerCase())
                 return setIsDeleted(true)
             }
 
@@ -43,8 +43,8 @@ function FieldText({ data, idField }: FieldProps) {
             }
 
             if (word.length < 1) {
-                setWord(e.target.value)
-                const obj = { latter: e.target.value, position: idField }
+                setWord(e.target.value.toLowerCase())
+                const obj = { latter: e.target.value.toLowerCase(), position: idField }
                 data.setAttempt([...data.attemptList, obj])
             }
         }}
