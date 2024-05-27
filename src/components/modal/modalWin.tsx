@@ -35,7 +35,7 @@ export default function ModalWin({ hiddenWord, countAttempt }: ModalWinProps) {
                     </li>
                 </ul>
 
-                <hr />
+                <hr className="border-zinc-500" />
 
                 <div className="w-full flex justify-center">
                     <button
