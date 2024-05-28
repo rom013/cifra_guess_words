@@ -37,6 +37,7 @@ export default function ModalWin({ hiddenWord, countAttempt }: ModalWinProps) {
                 <div className="w-full flex justify-center">
                     <button
                         className="border-white border text-white hover:text-black hover:border-transparent transition-all hover:bg-teal-400 py-3 px-6 rounded-lg text-base font-semibold font-sora"
+                        onClick={() => window.location.reload()}
                     >
                         Jogar novamente
                     </button>

@@ -10,7 +10,7 @@ function FieldText({ data, idField }: FieldProps) {
     function handleDeletedWork(e: ChangeEvent<HTMLInputElement>) {
         setWord(e.target.value.toLowerCase())
 
-        data.attemptList[idField] = { latter: e.target.value.toLowerCase(), position: idField }
+        data.attemptList[idField] = { letter: e.target.value.toLowerCase(), position: idField }
 
         setIsDeleted(false)
         data.setAttempt(data.attemptList)
@@ -31,7 +31,7 @@ function FieldText({ data, idField }: FieldProps) {
 
             if (word.length < 1) {
                 setWord(e.target.value.toLowerCase())
-                const obj = { latter: e.target.value.toLowerCase(), position: idField }
+                const obj = { letter: e.target.value.toLowerCase(), position: idField }
                 data.setAttempt([...data.attemptList, obj])
             }
         }}

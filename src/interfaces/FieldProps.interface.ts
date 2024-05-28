@@ -1,5 +1,5 @@
 interface Attempt {
-  latter: string;
+  letter: string;
   position: number;
 }
 

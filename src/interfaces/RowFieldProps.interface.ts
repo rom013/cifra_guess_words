@@ -1,6 +1,6 @@
 interface Attempt {
   position: number;
-  latter: string;
+  letter: string;
 }
 
 export type RowFieldProps = {

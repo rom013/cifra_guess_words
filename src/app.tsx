@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { RowField } from "./components/rowField";
 import ModalWin from "./components/modal/modalWin";
 import { wordOptions } from "./db/words";
+import { classifyLetter } from "./functions/classifyLetter";
 
 let count = 0
 
 export function App() {
-  const [attempt, setAttempt] = useState<{ latter: string, position: number }[]>([])
+  const [attempt, setAttempt] = useState<{ letter: string, position: number }[]>([])
   const [result, setResult] = useState<Array<Array<string>>>([[], [], [], [], []])
   const [isActive, setIsActive] = useState<boolean>(true)
   const [fields, setField] = useState<boolean[]>([true, false, false, false, false])
@@ -31,24 +32,8 @@ export function App() {
 
     attempt.sort((a, b) => {
       return a.position - b.position
-    }).forEach((w, i) => {
-      const positionIndex = hiddenWord.findIndex((element, index) => {
-        return element === w.latter && index === i
-      })
-
-      if (positionIndex != -1) {
-        resultList.push("right")
-      }
-      else {
-        const positionLatterIndex = hiddenWord.findIndex((element, index) => {
-          return element === w.latter && index != i
-        })
-
-        if (positionLatterIndex != -1) {
-          resultList.push("almost")
-        }
-        else resultList.push("invalid")
-      }
+    }).forEach((onlyWord, i) => {
+      resultList.push(classifyLetter({ hiddenWord, onlyWord, i }))
     })
 
     await setResult(prevState => {
@@ -91,8 +76,6 @@ export function App() {
         <section className="w-full flex flex-col items-center justify-center gap-4">
           {
             fields.map((field, key) => {
-              // console.log("okkkk");
-
               return (
                 <RowField
                   key={key}
