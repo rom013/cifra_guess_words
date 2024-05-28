@@ -1,7 +1,4 @@
-interface ModalWinProps {
-    hiddenWord: string[],
-    countAttempt: number
-}
+import { ModalWinProps } from "../../interfaces/ModalWinProps.interface"
 
 export default function ModalWin({ hiddenWord, countAttempt }: ModalWinProps) {
     return (
