@@ -86,7 +86,7 @@ export function App() {
   return (
     <main className='min-h-screen max-w-4xl w-full mx-auto py-10'>
       <div className="flex flex-col gap-20 items-center">
-        <h1 className="text-white text-4xl font-bold font-sora">CIFRA</h1>
+        <h1 className="text-white text-4xl font-bold font-sora tracking">CIFRA</h1>
 
         <section className="w-full flex flex-col items-center justify-center gap-4">
           {
