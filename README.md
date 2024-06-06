@@ -1,7 +1,7 @@
 <h1>
-  Boilerplate React with Typescript
+  Cifra - adivinhe as palavras
 </h1>
-<p>Desenvolvido para ajudar outros devs na agilidade de seu código React com Typescript</p>
+<p>Este projeto consiste na criação de um jogo de adivinhação de palavras online, inspirado no popular jogo Termo. O objetivo do jogador é adivinhar uma palavra secreta de cinco letras em apenas seis tentativas. A cada tentativa, o jogador recebe pistas visuais que indicam se as letras da tentativa estão presentes na palavra secreta e em qual posição.</p>
 <p>É muito simples de utilizar, basta clonar o projeto e instalar as dependências:</p>
 
 ```javascript
@@ -20,27 +20,26 @@
 <ul>
   <li>Vite</li>
   <li>Tailwind CSS</li>
+  <li>Typescript</li>
+  <li>React</li>
 </ul>
 
 ---
 
 <h2>
-  Eslint
+  Regras do Jogo:
 </h2>
-<p>
-O ESLint é uma ferramenta de análise de código estática amplamente utilizada na comunidade de desenvolvimento de software. 
-</p>
 
-<p>
-Ele é projetado para ajudar os desenvolvedores a identificar e corrigir problemas de qualidade, erros de sintaxe e padrões de código inconsistentes em projetos JavaScript e TypeScript.
-</p>
+1. O jogador tem seis tentativas para adivinhar uma palavra secreta de cinco letras.
+2. A cada tentativa, o jogador deve digitar uma palavra de cinco letras.
+3. Após cada tentativa, o jogo fornece pistas visuais:
 
-```javascript
-  // Eslint
-  npm i -D eslint
-  npm i -D eslint-config-prettier eslint-plugin-prettier eslint-plugin-import
-  npm i -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
-```
+- Verde: A letra está na palavra e na posição correta.
+- Amarelo: A letra está na palavra, mas em outra posição.
+- Cinza: A letra não está na palavra.
+
+4. O jogador vence o jogo se adivinhar a palavra secreta antes das seis tentativas serem esgotadas.
+5. O jogador perde o jogo se não conseguir adivinhar a palavra secreta em seis tentativas.
 
 ---
 
